@@ -1,6 +1,7 @@
 ﻿import numpy as np
 import math
 import matplotlib.pyplot as plt
+import matplotlib.lines as plt_lines
 from prettytable import PrettyTable
 
 
@@ -11,11 +12,11 @@ def function(x, y):
 def find_points(x_start, x_end, y_start, y_end, eps, f):
     xs = [x_start]
     ys = [y_start]
-    h = 1e-2  # DO NOT CHANGE THIS CONSTANT
+    h = eps # DO NOT CHANGE THIS CONSTANT
     rng = h
     y_now = y_start
     for x in np.arange(x_start + h, x_end, h):
-        answ = round(bisection(y_now - rng, y_now + rng, x, eps, f), 5)
+        answ = round(bisection(y_now - rng, y_now + rng, x, eps, f), 4)
         xs.append(x)
         ys.append(answ)
         y_now = answ
@@ -30,33 +31,30 @@ def bisection(a, b, x, eps, f):
         return a
     if f(x, b) == eps:
         return b
-    dx = b - a
     while b - a > eps:
-        dx /= 2
-        yi = a + dx
-        if f(x, a) * f(x, yi) <= 0:
-            b = yi
+        c = (a + b) / 2
+        if f(x, b) * f(x, c) < 0:
+            a = c
         else:
-            a = yi
-    return yi
+            b = c
+    return (a + b)/2
 
 
 def trapezium_method(down, up, h,  ys):
     n = int((up - down) / h)
     integral = 0
     for i in range(0, n):
-        integral += (ys[i] + ys[i + 1]) / 2
+        integral += abs(ys[i] + ys[i + 1])/2
     return integral * h
-    
 
-x, y = find_points(0, 2, -0.35, 7.64, 1e-5, function)
+x, y = find_points(0, 2, -0.35, 7.64, 1e-2, function)
 
 table = PrettyTable()
 table.add_column("X", x)
 table.add_column("Y", y)
 print(table)
 
-i = trapezium_method(0, 2, 0.01, y)
+i = trapezium_method(0, 2, 1e-2, y)
 plt.figure('F(x,y) = e^(x^3 - y) - x^6 + 2(x^3) * y + 2(x^3)- y^2 - 2y - 2 = 0 ')
 x = np.array(x)
 y = np.array(y)
