@@ -12,7 +12,7 @@ def function(x, y):
 def find_points(x_start, x_end, y_start, y_end, eps, f):
     xs = [x_start]
     ys = [y_start]
-    h = eps # DO NOT CHANGE THIS CONSTANT
+    h = eps
     rng = h
     y_now = y_start
     for x in np.arange(x_start + h, x_end, h):
@@ -31,7 +31,8 @@ def bisection(a, b, x, eps, f):
         return a
     if f(x, b) == eps:
         return b
-    while b - a > eps:
+    c = (a + b) / 2
+    while abs(b - a) > eps * abs(c) + eps:
         c = (a + b) / 2
         if f(x, b) * f(x, c) < 0:
             a = c
@@ -40,12 +41,14 @@ def bisection(a, b, x, eps, f):
     return (a + b)/2
 
 
-def trapezium_method(down, up, h,  ys):
-    n = int((up - down) / h)
-    integral = 0
-    for i in range(0, n):
-        integral += abs(ys[i] + ys[i + 1])/2
-    return integral * h
+def trapezium_method(down, up, n,  ys):
+    h = (up - down) / n
+    print(h)
+    integral = (ys[0] + ys[n]) / 2
+    for i in range(1, n):
+        integral += ys[i]
+        print(integral)
+    return integral * h 
 
 x, y = find_points(0, 2, -0.35, 7.64, 1e-2, function)
 
@@ -54,7 +57,8 @@ table.add_column("X", x)
 table.add_column("Y", y)
 print(table)
 
-i = trapezium_method(0, 2, 1e-2, y)
+i = trapezium_method(0, 2, 200, y)
+print("INTEGRAL = {0:.5f}".format(i))
 plt.figure('F(x,y) = e^(x^3 - y) - x^6 + 2(x^3) * y + 2(x^3)- y^2 - 2y - 2 = 0 ')
 x = np.array(x)
 y = np.array(y)
@@ -63,7 +67,8 @@ plt.subplot(111).spines['bottom'].set_position('zero')
 plt.ylabel("y")
 plt.xlabel("x")
 plt.grid(True)
-plt.text(0, 6, "INTEGRAL \n {0:.4f}".format(i))
+plt.text(0, 6, "INTEGRAL \n {0:.5f}".format(i))
+
 plt.show()
 
 
