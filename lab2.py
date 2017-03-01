@@ -1,12 +1,12 @@
-from  math import cos, pi, fabs
+from  math import cos, pi, fabs, factorial
 import numpy as np
 from prettytable import PrettyTable
 
 
-def get_table():
+def get_table(up, down, step):
     xs = []
     ys = []
-    for x in np.arange(-3 * pi, 3 * pi, 0.1):
+    for x in np.arange(up, down, step):
         xs.append(x)
         ys.append(cos(x))
     return xs, ys
@@ -54,24 +54,40 @@ def newton_interpolation(lst_x, lst_y, x, n):
     return y_x
 
 
-xss, yss = get_table()
+def gen_error(x, y_inter, n, xs):
+    y_real = cos(x)
+    diff = abs(y_real - y_inter)
+    omega = x - xs[n]
+    for i in range(0, n):
+        omega *= (x - xs[i])
+    omega = abs(omega)
+    d = abs(cos(x + (pi * n)/2)) / factorial(n + 1)
+    return diff <= d * omega
+
+
+a = float(input('Введите нижнюю границу значений Х: '))
+b = float(input('Введите верхнюю границу значений Х: '))
+h = float(input('Введите шаг: '))
+
+xss, yss = get_table(a, b, h)
+
 table = PrettyTable()
 table.add_column("X", xss)
 table.add_column("Y", yss)
 
 try:
-    x = float(input('Введите значение х в пределах [-3pi, 3pi]: '))
-    if x > 3 * pi or x < -3 * pi:
-        x = float(input("X должен лежать в пределах [-3pi, 3pi]! Повторите ввод х: "))
+    x = float(input('Введите значение х в пределах [{0}, {1}]: '.format(a, b)))
+    if x > b or x < a:
+        x = float(input("X должен лежать в пределах [{0}, {1}]! Повторите ввод х: ".format(a,b)))
     n = int(input('Введите степень полинома: '))
     if n <= 0:
         n = int(input('Степень должна быть больше 0!\nПовторите ввод: '))
 
 except ValueError:
     print("Неверный ввод! Повторите")
-    x = float(input('Введите значение х в пределах [-3pi, 3pi]: '))
-    if x > 3 * pi or x < -3 * pi:
-        x = float(input("X должен лежать в пределах [-3pi, 3pi]! Повторите ввод х: "))
+    x = float(input('Введите значение х в пределах [{0}, {1}]: '.format(a, b)))
+    if x > b or x < a:
+        x = float(input("X должен лежать в пределах [{0}, {1}]! Повторите ввод х: ".format(a, b)))
     n = int(input('Введите степень полинома: '))
     if n <= 0:
         n = int(input('Степень должна быть больше 0!\nПовторите ввод: '))
@@ -84,4 +100,5 @@ print("Результат при интерполяции:  ", in_res)
 print("Реальный результат:  ", r_res)
 print("Абсолютная погрешность: {0:.5e}".format(absolute_error))
 print("Относительная погрешность: {0:.5e}".format(ratio_error))
+print('Погрешность полинома Ньютона:', gen_error(x, in_res, n, xss))
 #print(table)
