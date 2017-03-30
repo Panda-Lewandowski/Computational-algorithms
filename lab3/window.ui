@@ -23,86 +23,6 @@
       <height>421</height>
      </rect>
     </property>
-    <row>
-     <property name="text">
-      <string/>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string/>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string/>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string/>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string/>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string/>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string/>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string/>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string/>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string/>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string/>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string/>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string/>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string/>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string/>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string/>
-     </property>
-    </row>
     <column>
      <property name="text">
       <string>x</string>
@@ -118,11 +38,6 @@
       <string>p</string>
      </property>
     </column>
-    <item row="4" column="0">
-     <property name="text">
-      <string/>
-     </property>
-    </item>
    </widget>
    <widget class="QPushButton" name="addrow">
     <property name="geometry">
@@ -137,7 +52,7 @@
      <string>Добавить строку</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="solve">
     <property name="geometry">
      <rect>
       <x>200</x>
@@ -172,8 +87,17 @@
       <height>24</height>
      </rect>
     </property>
-    <property name="value">
+    <property name="minimum">
+     <double>-1.000000000000000</double>
+    </property>
+    <property name="maximum">
+     <double>1.000000000000000</double>
+    </property>
+    <property name="singleStep">
      <double>0.010000000000000</double>
+    </property>
+    <property name="value">
+     <double>-0.100000000000000</double>
     </property>
    </widget>
    <widget class="QDoubleSpinBox" name="eps_e">
@@ -185,8 +109,17 @@
       <height>24</height>
      </rect>
     </property>
+    <property name="minimum">
+     <double>-1.000000000000000</double>
+    </property>
+    <property name="maximum">
+     <double>1.000000000000000</double>
+    </property>
+    <property name="singleStep">
+     <double>0.010000000000000</double>
+    </property>
     <property name="value">
-     <double>0.200000000000000</double>
+     <double>0.100000000000000</double>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -267,17 +200,17 @@
      <string>Степень полинома </string>
     </property>
    </widget>
-   <widget class="QDoubleSpinBox" name="n">
+   <widget class="QSpinBox" name="d">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>150</x>
       <y>50</y>
-      <width>68</width>
+      <width>48</width>
       <height>24</height>
      </rect>
     </property>
     <property name="value">
-     <double>2.000000000000000</double>
+     <number>2</number>
     </property>
    </widget>
   </widget>
