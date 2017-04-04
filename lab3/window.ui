@@ -127,12 +127,12 @@
      <rect>
       <x>20</x>
       <y>110</y>
-      <width>281</width>
-      <height>20</height>
+      <width>111</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>Погрешность  от                            до</string>
+     <string>Погрешность  от </string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -224,6 +224,19 @@
     </property>
     <property name="text">
      <string>Использовать NumPy средства</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>110</y>
+      <width>21</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>до</string>
     </property>
    </widget>
   </widget>

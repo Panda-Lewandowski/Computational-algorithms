@@ -6,8 +6,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import QTableWidgetItem
 import matplotlib.pyplot as plt
-import lin_sys
-
+import gauss_seidel
 
 
 def f(x):
@@ -66,13 +65,16 @@ def read_table(win):
     r = win.table.rowCount()
     for i in range(r):
         item_x = win.table.item(i, 0)
-        win.xss.append(float(item_x.text()))
+        if item_x:
+            win.xss.append(float(item_x.text()))
     for i in range(r):
         item_y = win.table.item(i, 1)
-        win.yss.append(float(item_y.text()))
+        if item_y:
+            win.yss.append(float(item_y.text()))
     for i in range(r):
         item_p = win.table.item(i, 2)
-        win.pss.append(float(item_p.text()))
+        if item_p:
+            win.pss.append(float(item_p.text()))
 
 
 def solve(win):
@@ -102,7 +104,7 @@ def solve(win):
 
         nparray_to_list(A)
         nparray_to_list(B)
-        win.css = lin_sys.seidel(A, B, 0.0001)
+        win.css = gauss_seidel.gauss_seidel(A, B, 0.0001)
         draw(win)
 
 
