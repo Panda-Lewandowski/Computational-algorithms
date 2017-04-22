@@ -1,7 +1,9 @@
 from legendre import legendre
 import seidel
+import matrix
 import numpy as np
 from math import sqrt, pi, e
+
 
 def quadrature(k):
     if k % 2:
@@ -20,12 +22,14 @@ def integrate(a, b, n, f):
             A[k, i] = l[i] ** k
         B[k] = quadrature(k)
 
-    D = np.linalg.inv(A)
+    """D = np.linalg.inv(A)
     D = np.matrix(D)
     C = D * B
     C = C.transpose()
     Ai = np.array(C.ravel())
-    Ai = nparray_to_list(Ai)[0]
+    Ai = nparray_to_list(Ai)[0]"""
+    D = matrix.inv(A)
+    Ai = matrix.multi(D, B)
 
     return (b - a) / 2 * sum(Ai[i] * f((b-a)/2 * l[i] + (a + b) / 2) for i in range(n))
 

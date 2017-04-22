@@ -14,10 +14,10 @@ def F(x, α):
 
 
 if __name__ == "__main__":
-    a = float(input('Введите нижнюю границу значений Х: '))
-    b = float(input('Введите верхнюю границу значений Х: '))
+    a = 0  # float(input('Введите нижнюю границу значений Х: '))
+    b = 5  # float(input('Введите верхнюю границу значений Х: '))
     alpha = float(input('Введите  α: '))
     n = int(input('Введите максимальную степень полинома Лежандра: '))
 
-    print(bisection_xy(a, b, alpha, 0.001, F))
+    print('Х = ', bisection_xy(a, b, alpha, 0.001, F))
 
