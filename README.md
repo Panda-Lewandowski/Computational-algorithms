@@ -15,12 +15,15 @@
 | Lab 6| 🌀 ||
 <ul>
 <li>Python 3.6
-<li><b>Using libs:</b> PyQt5 (5.8), numpy (1.12), matplotlib(2.0.0), math (std) , prettytable (0.7.2)
+<li><b>Using libs:</b> PyQt5 (5.8), numpy (1.12), matplotlib(2.0.0), math (std) , prettytable (0.7.2)</ul>
 
-#### <i>Legend:</i>
+#### Run `pip3 install -r requirements.txt` to install all dependencies at once.
+
+#### <i>Legend:</i><ul>
 <ul>
 <li>✅ - ОК
 <li>⚠️ - problem
 <li>🆘 - need help
 <li>🌀 - in process
+</ul>
 </ul>
